@@ -191,7 +191,7 @@ if __name__ == '__main__':
 
 
     count = 10000
-    for i in range(len(img_list)):
+    for i in range(len(img_list[:10])):
 
         frame_path = img_paths[i]
         img = cv2.imread(frame_path)

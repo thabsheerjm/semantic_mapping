@@ -32,6 +32,6 @@ The project is done towards the completetion of course [RBE549](https://rbe549.g
 
 ## References
 
-[1](https://rbe549.github.io/fall2022/hw/hw2/)  
-[2](https://arxiv.org/abs/1911.10150)
+[1] [RBE549-HW2](https://rbe549.github.io/fall2022/hw/hw2/)    
+[2] [PointPainting: Sequential Fusion for 3D Object Detection](https://arxiv.org/abs/1911.10150)
 

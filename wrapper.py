@@ -12,7 +12,7 @@ from argparse import ArgumentParser
 import shutil
 import torch
 
-from torchvision import models, transforms
+from torchvision import transforms
 from torchvision.transforms import functional as F
 
 
@@ -84,18 +84,7 @@ class SemanticSegmentation:
         np.random.seed(42)  # For reproducible colors for each classes
         return np.random.randint(0, 255, size=(num_classes, 3), dtype=np.uint8)
 
-    def visualize_pointcloud(self,pointcloud, count, save_path):
-        xyz = pointcloud[:, 0:3]
-        semantics = pointcloud[:,3:]
-        visualizer = o3d.visualization.Visualizer()
-        visualizer.create_window()
-        pcd = o3d.geometry.PointCloud()
-        pcd.points = o3d.utility.Vector3dVector(xyz)
-        pcd.colors = o3d.utility.Vector3dVector(semantics)
-        visualizer.add_geometry(pcd)
-        visualizer.run()
-        visualizer.capture_screen_image(os.path.join(save_path, f"{count}.png"))
-        visualizer.destroy_window()
+    
 
 
     def project_lidar_on_image(self,P, lidar_pts, size):
@@ -191,7 +180,7 @@ if __name__ == '__main__':
 
 
     count = 10000
-    for i in range(len(img_list[:10])):
+    for i in range(len(img_list)):
 
         frame_path = img_paths[i]
         img = cv2.imread(frame_path)
@@ -223,13 +212,15 @@ if __name__ == '__main__':
                 # assign color to point clouds
                 cloud_color[j] = class_color/255.0
 
-        # stacked_img = np.vstack((img,fused_img))
+        # Stack the original image and the painted  image vertically
+        stacked_img_painted = np.vstack((img,fused_img))
+
          # Ensure semantic_rgb is resized to match img dimensions if they don't already
         semantic_rgb_resized = cv2.resize(semantic_rgb, (img.shape[1], img.shape[0]), interpolation=cv2.INTER_NEAREST)
 
         # Stack the original image and the semantic segmentation image vertically
-        stacked_img = np.vstack((img, semantic_rgb_resized))
-        cv2.imwrite(sem.img_path + "/" + str(count) + ".png",stacked_img)
+        stacked_img_segmented = np.vstack((img, semantic_rgb_resized))
+        cv2.imwrite(sem.img_path + "/" + str(count) + ".png",stacked_img_segmented)
 
 
         # colored point cloud
@@ -240,5 +231,5 @@ if __name__ == '__main__':
 
         
 
-    video_file = "semantic_map.mp4"
+    video_file = "semantic_video.mp4"
     sem.make_a_video(10, sem.img_path, video_file)

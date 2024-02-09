@@ -134,7 +134,7 @@ tmp/
 
 # data 
 /Data/
-2video.mp4
-1video.mp4
+painted_video.mp4
+segmented_video.mp4
 map.py
 /Results/

@@ -14,6 +14,24 @@ A detailed description and method is explained [here](https://rbe549.github.io/f
 
 * Add necessary paths and calibration data path to the config file.
 ```
+File Hierarchy
+semantic_mapping/
+├── calibration/
+│   ├── calib.txt
+│   ├── calib_cam_to_pose.txt
+│   ├── calib_cam_to_velo.txt
+│   ├── calib_sick_to_velo.txt
+│   ├── perspective.txt
+│   ├── image_02.yaml
+│   └── image_03.yaml
+├── config/
+│   └── config.json
+├── README.md
+├── requirements.txt
+└── wrapper.py
+```
+
+```
 python3 wrapper.py --config config/config.json
 ```
 

@@ -6,6 +6,10 @@ The objective of this project is to apply semantic segmentation to point clouds 
 The KITTI-360 dataset provides 360-degree views captured from a vehicle navigating through urban environments. It includes semantic labels for a variety of categories, making it an ideal dataset for training and evaluating semantic segmentation models on point clouds.  
 Lidar pointclouds from velodyne sensor and RGB images is used for this project. 
 
+## Model 
+
+deeplabv3_resnet50 from PyTorch
+
 ## Method 
 
 A detailed description and method is explained [here](https://rbe549.github.io/fall2022/hw/hw2/)
